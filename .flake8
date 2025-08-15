@@ -1,0 +1,112 @@
+[flake8]
+# Maximum line length
+max-line-length = 100
+
+# List of error and warning codes to ignore
+ignore = 
+    # E203: whitespace before ':' (conflicts with black)
+    E203,
+    # W503: line break before binary operator (conflicts with black)
+    W503,
+    # W504: line break after binary operator (conflicts with W503)
+    W504,
+    # E501: line too long (handled by black)
+    E501,
+    # F401: imported but unused (handled in __init__.py files)
+    F401,
+    # Django-specific ignores
+    # DJ01: Avoid using null=True on string-based fields
+    DJ01,
+    # DJ03: Avoid using any() and all() on QuerySet
+    DJ03,
+
+# List of error and warning codes to explicitly enable
+select = 
+    E,   # pycodestyle errors
+    W,   # pycodestyle warnings
+    F,   # pyflakes errors
+    C,   # mccabe complexity
+    B,   # flake8-bugbear
+    BLK, # flake8-black
+    I,   # flake8-import-order
+    Q,   # flake8-quotes
+    DJ,  # flake8-django
+
+# Exclude files and directories
+exclude = 
+    .git,
+    __pycache__,
+    .tox,
+    .eggs,
+    *.egg,
+    build,
+    dist,
+    migrations,
+    venv,
+    .venv,
+    env,
+    .env,
+    node_modules,
+    .mypy_cache,
+    .pytest_cache,
+    htmlcov,
+
+# Maximum allowed McCabe complexity
+max-complexity = 10
+
+# Directories to check for import violations
+application-import-names = nautobot_chatbot
+
+# Import order style
+import-order-style = google
+
+# Per-file ignores
+per-file-ignores =
+    # Allow unused imports in __init__.py files
+    __init__.py:F401,F403
+    # Allow long lines in migrations
+    */migrations/*.py:E501
+    # Allow unused imports and long lines in test files
+    */tests/*.py:F401,F841,E501
+    # Settings files can have long lines and unused imports
+    settings.py:E501,F401,F403
+    # Django configuration files
+    nautobot_config.py:E501,F401,F403
+    # Allow everything in generated files
+    */migrations/*:E501,F401,F403,F405
+
+# Docstring conventions
+docstring-convention = google
+
+# Quote style
+inline-quotes = double
+multiline-quotes = double
+docstring-quotes = double
+
+# Enable specific flake8-bugbear checks
+extend-select = B901,B902,B903,B950
+
+# Disable specific flake8-bugbear checks that are too strict
+extend-ignore = 
+    # B008: Do not perform function calls in argument defaults
+    B008,
+    # B024: Abstract base class with no abstract methods
+    B024,
+
+# Format for error messages
+format = %(path)s:%(row)d:%(col)d: %(code)s %(text)s
+
+# Show source code for errors
+show-source = True
+
+# Count errors and warnings
+count = True
+
+# Display statistics
+statistics = True
+
+# Benchmark performance
+benchmark = False
+
+# Enable color output (if terminal supports it)
+color = auto

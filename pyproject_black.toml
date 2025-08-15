@@ -1,0 +1,65 @@
+# Black configuration (standalone)
+# Note: This is also configured in pyproject.toml
+
+[tool.black]
+# Line length
+line-length = 100
+
+# Target Python versions
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+# File patterns to include
+include = '\.pyi?$'
+
+# Directories and files to exclude
+extend-exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+    | venv
+    | \.venv
+    | __pycache__
+    | node_modules
+  )/
+)
+'''
+
+# Don't normalize string quotes or prefixes
+skip-string-normalization = false
+
+# Don't normalize magic trailing commas
+skip-magic-trailing-comma = false
+
+# Preview mode (enable unstable features)
+preview = false
+
+# Enable colored output
+color = true
+
+# Fast mode (skip AST safety checks)
+fast = false
+
+# Diff mode (show what would be reformatted)
+diff = false
+
+# Check mode (don't write back, just return status)
+check = false
+
+# Verbose mode
+verbose = false
+
+# Quiet mode
+quiet = false
+
+# Required version
+required-version = "22.0"

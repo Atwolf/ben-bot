@@ -1,4 +1,7 @@
+# Third-party imports
 from django.urls import path
+
+# Local imports
 from . import views
 
 app_name = "nautobot_chatbot"

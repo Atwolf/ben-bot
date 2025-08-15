@@ -1,5 +1,5 @@
+# Third-party imports
 from nautobot.apps.ui import NavMenuAddButton, NavMenuGroup, NavMenuItem, NavMenuTab
-
 
 menu_items = (
     NavMenuTab(
