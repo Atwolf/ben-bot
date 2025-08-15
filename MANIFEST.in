@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+recursive-include nautobot_chatbot/static *
+recursive-include nautobot_chatbot/templates *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

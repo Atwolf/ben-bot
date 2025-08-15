@@ -1,0 +1,35 @@
+{% load static %}
+
+<!-- Chatbot Overlay Widget -->
+<div id="chatbot-overlay" class="chatbot-overlay" style="display: none;">
+    <div class="chatbot-header">
+        <span class="chatbot-title">Ben Bot</span>
+        <div class="chatbot-controls">
+            <button id="minimize-chat" class="btn-minimize" title="Minimize">&minus;</button>
+            <button id="close-chat" class="btn-close" title="Close">&times;</button>
+        </div>
+    </div>
+    <div class="chatbot-body">
+        <div id="chatbot-messages" class="chatbot-messages">
+            <div class="chat-message bot-message">
+                <div class="message-content">
+                    <strong>Ben Bot:</strong> Hello! I'm here to help with your Nautobot questions.
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Ask me anything..." autocomplete="off">
+            <button id="chatbot-send" class="send-btn">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Chat Button -->
+<div id="chat-toggle" class="chat-toggle" title="Open Chat">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v6l6-6h6c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+    </svg>
+</div>
+
+<link rel="stylesheet" type="text/css" href="{% static 'nautobot_chatbot/css/chatbot.css' %}">
+<script src="{% static 'nautobot_chatbot/js/chatbot.js' %}"></script>

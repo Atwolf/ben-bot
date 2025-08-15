@@ -1,0 +1,43 @@
+{% extends "nautobot_chatbot/base.html" %}
+{% load static %}
+
+{% block title %}{{ chatbot_title }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ chatbot_title }}</h1>
+            <div class="card">
+                <div class="card-body">
+                    <div id="chat-container" class="chat-container">
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="chat-message bot-message">
+                                <div class="message-content">
+                                    <strong>Ben Bot:</strong> Hello! I'm your Nautobot assistant. How can I help you today?
+                                </div>
+                                <div class="message-timestamp">{{ "now"|date:"H:i" }}</div>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <div class="input-group">
+                                <input type="text" id="chat-input" class="form-control" placeholder="Type your message here..." autocomplete="off">
+                                <div class="input-group-append">
+                                    <button id="send-button" class="btn btn-primary" type="button">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize chatbot when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeChatbot();
+    });
+</script>
+{% endblock %}

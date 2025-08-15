@@ -1,0 +1,8 @@
+nautobot>=1.5.0
+django>=3.2
+
+[dev]
+pytest
+pytest-django
+black
+flake8

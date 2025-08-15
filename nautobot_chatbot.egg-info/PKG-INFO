@@ -1,0 +1,121 @@
+Metadata-Version: 2.4
+Name: nautobot-chatbot
+Version: 1.0.0
+Summary: A Nautobot app that provides an overlay chatbot interface
+Author: Ben Bot
+Author-email: Ben Bot <benbot@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/example/nautobot-chatbot
+Project-URL: Repository, https://github.com/example/nautobot-chatbot
+Project-URL: Documentation, https://github.com/example/nautobot-chatbot#readme
+Keywords: nautobot,chatbot,assistant,plugin
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: nautobot>=1.5.0
+Requires-Dist: django>=3.2
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-django; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Dynamic: author
+
+# Nautobot Chatbot App
+
+A Nautobot app that provides an interactive chatbot overlay for the Nautobot interface.
+
+## Features
+
+- **Floating Chatbot Widget**: A persistent chat interface accessible from any Nautobot page
+- **Intelligent Responses**: Rule-based chatbot that can help with common Nautobot questions
+- **Chat History**: Persistent chat sessions with message history
+- **Responsive Design**: Works on desktop and mobile devices
+- **Easy Integration**: Seamlessly integrates with existing Nautobot installations
+
+## Installation
+
+1. Install the package:
+```bash
+pip install nautobot-chatbot
+```
+
+2. Add the app to your `nautobot_config.py`:
+```python
+PLUGINS = [
+    "nautobot_chatbot",
+    # ... other apps
+]
+```
+
+3. Run migrations:
+```bash
+nautobot-server migrate
+```
+
+4. Restart your Nautobot server
+
+## Configuration
+
+The app supports several configuration options in your `nautobot_config.py`:
+
+```python
+PLUGINS_CONFIG = {
+    "nautobot_chatbot": {
+        "enable_chatbot": True,
+        "chatbot_title": "Ben Bot Assistant",
+        "max_chat_history": 50,
+    }
+}
+```
+
+## Usage
+
+### Overlay Chatbot
+- Look for the floating chat icon in the bottom-right corner of any Nautobot page
+- Click the icon to open the chatbot overlay
+- Type your questions and get instant responses
+- Use the minimize and close buttons to control the chat window
+
+### Full Chat Interface
+- Navigate to **Chatbot > Chat Interface** in the main menu
+- Use the full-page chat interface for extended conversations
+
+### Supported Topics
+The chatbot can help with:
+- Device management and navigation
+- IPAM (IP Address Management) questions
+- Circuit management
+- General Nautobot navigation
+- Basic help and guidance
+
+## Development
+
+### Setting up Development Environment
+
+1. Clone the repository
+2. Create a virtual environment
+3. Install dependencies:
+```bash
+pip install -e .
+```
+
+### Running Tests
+```bash
+python -m pytest tests/
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.

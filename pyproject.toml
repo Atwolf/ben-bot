@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nautobot-chatbot"
+version = "1.0.0"
+description = "A Nautobot app that provides an overlay chatbot interface"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Ben Bot", email = "benbot@example.com"},
+]
+keywords = ["nautobot", "chatbot", "assistant", "plugin"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "nautobot>=1.5.0",
+    "django>=3.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-django",
+    "black",
+    "flake8",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/nautobot-chatbot"
+Repository = "https://github.com/example/nautobot-chatbot"
+Documentation = "https://github.com/example/nautobot-chatbot#readme"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nautobot_chatbot*"]
+
+[tool.setuptools.package-data]
+"nautobot_chatbot" = [
+    "templates/**/*.html",
+    "static/**/*.css",
+    "static/**/*.js",
+]

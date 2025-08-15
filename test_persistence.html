@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Persistent Session</title>
+    <meta name="chatbot-user-id" content="1">
+</head>
+<body>
+    <h1>Test Page for Persistent Session</h1>
+    <div id="chatbot-overlay" style="display: none;">
+        <div class="chatbot-header">
+            <span class="chatbot-title">Ben Bot</span>
+        </div>
+        <div class="chatbot-body">
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="chat-message bot-message">
+                    <div class="message-content">
+                        <strong>Ben Bot:</strong> Hello! I'm here to help with your Nautobot questions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="chat-toggle" class="chat-toggle">
+        Chat
+    </div>
+
+    <script>
+        // Test our localStorage session management
+        function testPersistentSession() {
+            console.log('Testing persistent session functionality...');
+            
+            // Simulate our session management
+            let userId = '1';
+            let sessionId = null;
+            
+            function getStoredSessionId() {
+                try {
+                    const stored = localStorage.getItem('nautobot_chatbot_session');
+                    if (stored) {
+                        const sessionData = JSON.parse(stored);
+                        if (sessionData.userId === userId && 
+                            sessionData.timestamp > Date.now() - (24 * 60 * 60 * 1000)) {
+                            return sessionData.sessionId;
+                        }
+                    }
+                } catch (error) {
+                    console.warn('Error reading session from localStorage:', error);
+                }
+                return null;
+            }
+            
+            function storeSessionId(sessionId) {
+                try {
+                    const sessionData = {
+                        sessionId: sessionId,
+                        userId: userId,
+                        timestamp: Date.now()
+                    };
+                    localStorage.setItem('nautobot_chatbot_session', JSON.stringify(sessionData));
+                    console.log('Stored session:', sessionData);
+                } catch (error) {
+                    console.warn('Error storing session to localStorage:', error);
+                }
+            }
+            
+            function generateSessionId() {
+                const userPart = userId ? `user_${userId}` : 'anonymous';
+                const randomPart = Math.random().toString(36).substr(2, 9);
+                const timePart = Date.now();
+                return `${userPart}_${randomPart}_${timePart}`;
+            }
+            
+            // Test session persistence
+            sessionId = getStoredSessionId();
+            console.log('Retrieved session from localStorage:', sessionId);
+            
+            if (!sessionId) {
+                sessionId = generateSessionId();
+                storeSessionId(sessionId);
+                console.log('Generated new session:', sessionId);
+            }
+            
+            // Simulate page navigation (reload)
+            console.log('Simulating page navigation...');
+            setTimeout(() => {
+                const retrievedSessionId = getStoredSessionId();
+                console.log('After navigation, retrieved session:', retrievedSessionId);
+                console.log('Session persisted:', sessionId === retrievedSessionId);
+                
+                if (sessionId === retrievedSessionId) {
+                    console.log('✅ SUCCESS: Session persistence is working!');
+                    document.body.innerHTML += '<div style="color: green; font-weight: bold; margin: 20px;">✅ SUCCESS: Session persistence is working!</div>';
+                } else {
+                    console.log('❌ FAILED: Session persistence not working');
+                    document.body.innerHTML += '<div style="color: red; font-weight: bold; margin: 20px;">❌ FAILED: Session persistence not working</div>';
+                }
+            }, 1000);
+        }
+        
+        // Run test when page loads
+        testPersistentSession();
+    </script>
+</body>
+</html>
